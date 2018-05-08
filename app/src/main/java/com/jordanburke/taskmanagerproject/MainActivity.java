@@ -2,15 +2,49 @@ package com.jordanburke.taskmanagerproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.create_task_button)
+    protected Button createTaskButton;
+    @BindView(R.id.remove_tasks_button)
+    protected Button removeTaskButton;
+    @BindView(R.id.list_tasks_button)
+    protected Button listTasksButton;
+    private CreateTaskFragment createTaskFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.create_task_button)
+    protected void createTaskClicked() {
+
+        createTaskFragment = CreateTaskFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, createTaskFragment).commit();
+
+
+    }
+
+    @OnClick(R.id.remove_tasks_button)
+    protected void removeTaskClicked() {
+
+
+
+    }
+
+    @OnClick(R.id.list_tasks_button)
+    protected void listTasksClicked() {
+
+
+
     }
 }

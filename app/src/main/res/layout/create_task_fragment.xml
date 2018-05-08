@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_task_constraint_layout">
+
+    <TextView
+        android:id="@+id/task_information_text"
+        android:layout_width="300dp"
+        android:layout_height="56dp"
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
+        app:layout_constraintTop_toTopOf="@id/create_task_constraint_layout"
+        android:layout_marginTop="40dp"
+        android:text="Enter Task Information Below"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/customBlack"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@id/task_information_text"
+        android:layout_marginTop="70dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/task_name_edit"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Task Name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="monospace"/>
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@id/task_information_text"
+        android:layout_marginTop="170dp"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/due_date_edit"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Due Date"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="monospace"/>
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@id/task_information_text"
+        android:layout_marginTop="270dp"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/details_edit_text"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:hint="Details"
+            android:textStyle="bold"
+            android:fontFamily="monospace"/>
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/create_task_final_button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="monospace"
+        android:text="CREATE"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/create_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
