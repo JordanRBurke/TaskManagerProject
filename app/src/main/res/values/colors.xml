@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="customBlack">#000000</color>
+    <color name="customBackground">#90c3cc</color>
+    <color name="customWhite">#969494</color>
+    <color name="myMainSecondaryColor">#2e2323</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
