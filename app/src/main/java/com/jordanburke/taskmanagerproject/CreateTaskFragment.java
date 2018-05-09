@@ -26,6 +26,10 @@ public class CreateTaskFragment extends Fragment {
     protected TextInputEditText taskDueDateEdit;
     @BindView(R.id.details_edit_text)
     protected TextInputEditText detailsEditText;
+    public static final String TASK_NAME = "task_name";
+    public static final String TASK_DUE_DATE = "task_due_date";
+    public static final String TASK_DESCRIPTION = "task_description";
+    private TaskListFragment taskListFragment;
 
     @Nullable
     @Override
@@ -49,9 +53,20 @@ public class CreateTaskFragment extends Fragment {
     @OnClick(R.id.create_task_final_button)
     protected void taskFinalButtonClicked() {
 
+        Bundle bundle = new Bundle();
         toastMessage("Task Created!");
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        startActivity(intent);
+        String taskName = taskNameEdit.getText().toString();
+        String taskDueDate = taskDueDateEdit.getText().toString();
+        String taskDetails = detailsEditText.getText().toString();
+        bundle.putString(TASK_NAME, taskName);
+        bundle.putString(TASK_DUE_DATE, taskDueDate);
+        bundle.putString(TASK_DESCRIPTION, taskDetails);
+
+        taskListFragment = TaskListFragment.newInstance();
+        taskListFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.create_task_frame_layout, taskListFragment).commit();
+
+
 
     }
 

@@ -1,0 +1,65 @@
+package com.jordanburke.taskmanagerproject;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import butterknife.ButterKnife;
+
+public class TaskListFragment extends Fragment {
+
+    private boolean dialogRead = false;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.task_list_layout_fragment, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    public static TaskListFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TaskListFragment fragment = new TaskListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        dialogProgress();
+    }
+
+    private AlertDialog dialogProgress() {
+
+        if (!dialogRead) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Hold your finger on a button to mark as complete")
+                    .setTitle("Guide")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+
+
+                }
+            });
+            return builder.create();
+
+        } else {
+
+        }
+
+        return dialogProgress();
+    }
+}

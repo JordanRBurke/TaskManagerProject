@@ -17,7 +17,8 @@
         android:textSize="23sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="@color/customBlack"/>
+        android:textColor="@color/customBlack"
+        android:elevation="5dp"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="300dp"
@@ -25,7 +26,8 @@
         app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
         app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
         app:layout_constraintTop_toBottomOf="@id/task_information_text"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="70dp"
+        android:elevation="5dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/task_name_edit"
@@ -34,7 +36,8 @@
             android:hint="Task Name"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:fontFamily="monospace"/>
+            android:fontFamily="monospace"
+            android:elevation="5dp"/>
 
 
     </android.support.design.widget.TextInputLayout>
@@ -46,6 +49,7 @@
         app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
         app:layout_constraintTop_toBottomOf="@id/task_information_text"
         android:layout_marginTop="170dp"
+        android:elevation="5dp"
         >
 
         <android.support.design.widget.TextInputEditText
@@ -55,7 +59,8 @@
             android:hint="Due Date"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:fontFamily="monospace"/>
+            android:fontFamily="monospace"
+            android:elevation="5dp"/>
 
 
     </android.support.design.widget.TextInputLayout>
@@ -67,6 +72,7 @@
         app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
         app:layout_constraintTop_toBottomOf="@id/task_information_text"
         android:layout_marginTop="270dp"
+        android:elevation="5dp"
         >
 
         <android.support.design.widget.TextInputEditText
@@ -76,7 +82,8 @@
             android:textAlignment="center"
             android:hint="Details"
             android:textStyle="bold"
-            android:fontFamily="monospace"/>
+            android:fontFamily="monospace"
+            />
 
 
     </android.support.design.widget.TextInputLayout>
@@ -93,12 +100,17 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@id/create_task_constraint_layout"
         app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
-        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout" />
+        app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
+        android:elevation="5dp"/>
 
 
         <FrameLayout
+            android:id="@+id/create_task_frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#e4e2e2"
+
+            >
 
         </FrameLayout>
 
