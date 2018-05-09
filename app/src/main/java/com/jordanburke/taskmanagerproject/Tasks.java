@@ -1,6 +1,13 @@
 package com.jordanburke.taskmanagerproject;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity
 public class Tasks {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String taskName;
     private String taskDueDate;
@@ -34,5 +41,13 @@ public class Tasks {
 
     public void setTaskDetails(String taskDetails) {
         this.taskDetails = taskDetails;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

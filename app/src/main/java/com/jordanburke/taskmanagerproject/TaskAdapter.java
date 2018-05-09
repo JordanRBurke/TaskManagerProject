@@ -19,7 +19,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private TextView dueDateView;
     private TextView detailTaskView;
 
-    public TaskAdapter(List<Tasks> tasksList) {
+    public TaskAdapter(List<Tasks> tasksList, MainActivity mainActivity) {
         this.tasksList = tasksList;
     }
 

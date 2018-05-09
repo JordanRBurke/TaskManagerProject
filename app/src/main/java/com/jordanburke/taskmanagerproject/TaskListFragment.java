@@ -17,8 +17,8 @@ import butterknife.ButterKnife;
 public class TaskListFragment extends Fragment {
 
     private boolean dialogRead = false;
-    @BindView(R.id.task_item_constraint_layout)
-    protected ConstraintLayout taskItemBackground;
+//    @BindView(R.id.task_item_constraint_layout)
+//    protected ConstraintLayout taskItemBackground;
 
     @Nullable
     @Override
@@ -72,7 +72,7 @@ public class TaskListFragment extends Fragment {
         final View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                taskItemBackground.setBackgroundColor(getResources().getColor(R.color.customGreen));
+//                taskItemBackground.setBackgroundColor(getResources().getColor(R.color.customGreen));
                 return false;
             }
         };
