@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.list_tasks_button)
     protected Button listTasksButton;
     private CreateTaskFragment createTaskFragment;
+    private TaskListFragment taskListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.list_tasks_button)
     protected void listTasksClicked() {
+
+        taskListFragment = TaskListFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, taskListFragment).commit();
+
 
 
 

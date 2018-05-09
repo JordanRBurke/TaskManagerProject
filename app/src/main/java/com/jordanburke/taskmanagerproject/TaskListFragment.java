@@ -5,16 +5,20 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TaskListFragment extends Fragment {
 
     private boolean dialogRead = false;
+    @BindView(R.id.task_item_constraint_layout)
+    protected ConstraintLayout taskItemBackground;
 
     @Nullable
     @Override
@@ -38,6 +42,7 @@ public class TaskListFragment extends Fragment {
     public void onStart() {
         super.onStart();
         dialogProgress();
+        taskCompleted();
     }
 
     private AlertDialog dialogProgress() {
@@ -47,13 +52,12 @@ public class TaskListFragment extends Fragment {
             builder.setMessage("Hold your finger on a button to mark as complete")
                     .setTitle("Guide")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
 
-
-                }
-            });
+                        }
+                    });
             return builder.create();
 
         } else {
@@ -62,4 +66,21 @@ public class TaskListFragment extends Fragment {
 
         return dialogProgress();
     }
+
+    private void taskCompleted() {
+
+        final View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                taskItemBackground.setBackgroundColor(getResources().getColor(R.color.customGreen));
+                return false;
+            }
+        };
+
+
+    }
+
+
+
+
 }

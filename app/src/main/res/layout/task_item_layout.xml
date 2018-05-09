@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/customWhite">
 
     <TextView
         android:id="@+id/item_task_name_view"
@@ -16,21 +17,25 @@
         android:layout_marginTop="15dp"
         android:textSize="20sp"
         android:fontFamily="monospace"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/customBlack"/>
 
     <TextView
+        android:id="@+id/details_item_view"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="@id/task_item_constraint_layout"
         app:layout_constraintLeft_toLeftOf="@id/task_item_constraint_layout"
         app:layout_constraintTop_toBottomOf="@id/item_task_name_view"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textColor="@color/customBlack"/>
 
     <TextView
         android:id="@+id/date_text_view"
         android:layout_width="75dp"
         android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="@id/task_item_constraint_layout"
-        app:layout_constraintRight_toRightOf="@id/task_item_constraint_layout"/>
+        app:layout_constraintRight_toRightOf="@id/task_item_constraint_layout"
+        android:textColor="@color/customBlack"/>
 
 </android.support.constraint.ConstraintLayout>
