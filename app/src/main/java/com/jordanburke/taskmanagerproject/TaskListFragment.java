@@ -79,6 +79,8 @@ public class TaskListFragment extends Fragment {
         return dialogProgress();
     }
 
+
+
     private void taskCompleted() {
 
         final View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
@@ -105,9 +107,8 @@ public class TaskListFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
 
-
-
     }
+
 
 
 

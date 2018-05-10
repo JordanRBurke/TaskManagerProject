@@ -91,13 +91,13 @@
     <Button
         android:id="@+id/create_task_final_button"
         android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="80dp"
 
         android:fontFamily="monospace"
         android:text="CREATE"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@id/create_task_constraint_layout"
         app:layout_constraintLeft_toLeftOf="@id/create_task_constraint_layout"
         app:layout_constraintRight_toRightOf="@id/create_task_constraint_layout"
@@ -109,7 +109,8 @@
             android:id="@+id/create_task_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#e4e2e2"
+            android:elevation="11dp"
+
 
             >
 

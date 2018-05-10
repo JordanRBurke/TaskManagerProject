@@ -2,6 +2,7 @@ package com.jordanburke.taskmanagerproject;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private TextView taskName;
     private TextView dueDateView;
     private TextView detailTaskView;
+    @BindView(R.id.task_name_edit)
+    protected TextInputEditText taskNameEdit;
+    @BindView(R.id.due_date_edit)
+    protected TextInputEditText dueDateEdit;
+    @BindView(R.id.details_edit_text)
+    protected TextInputEditText detailsEdit;
+
+
+
 
     public TaskAdapter(List<Tasks> tasksList, Context mainActivity) {
         this.tasksList = tasksList;
@@ -53,9 +63,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
         public void bindTaskList(Tasks tasks) {
-            tasks.setTaskName("w");
-            tasks.setTaskDetails("w");
-            tasks.setTaskDueDate("w");
+
+
         }
     }
 
