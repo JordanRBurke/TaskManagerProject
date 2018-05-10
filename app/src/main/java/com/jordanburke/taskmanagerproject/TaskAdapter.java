@@ -1,5 +1,6 @@
 package com.jordanburke.taskmanagerproject;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private TextView dueDateView;
     private TextView detailTaskView;
 
-    public TaskAdapter(List<Tasks> tasksList, MainActivity mainActivity) {
+    public TaskAdapter(List<Tasks> tasksList, Context mainActivity) {
         this.tasksList = tasksList;
     }
 
@@ -38,7 +39,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return tasksList.size();
     }
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -52,9 +53,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
         public void bindTaskList(Tasks tasks) {
-            tasks.setTaskName("");
-            tasks.setTaskDetails("");
-            tasks.setTaskDueDate("");
+            tasks.setTaskName("w");
+            tasks.setTaskDetails("w");
+            tasks.setTaskDueDate("w");
         }
     }
 

@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.task_item_recycler_view)
     private RecyclerView recyclerView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bottomNavigationMenu() {
+        bottomNavigationView = findViewById(R.id.navigation_bottom_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
 
                 taskListFragment = TaskListFragment.newInstance();
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, taskListFragment).commit();
@@ -79,23 +82,12 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 
-    private void settingUpAdapter() {
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        adapter = new TaskAdapter(taskDatabase.taskDao().getTasks(), this);
-
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-
-
-
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        bottomNavigationMenu();
 //        settingUpAdapter();
     }
 }

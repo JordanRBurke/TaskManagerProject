@@ -7,9 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,6 +23,11 @@ public class TaskListFragment extends Fragment {
     private boolean dialogRead = false;
 //    @BindView(R.id.task_item_constraint_layout)
 //    protected ConstraintLayout taskItemBackground;
+    private TaskDatabase taskDatabase;
+    private TaskAdapter adapter;
+    @BindView(R.id.task_item_recycler_view)
+    protected RecyclerView recyclerView;
+    private List<Tasks> tasksList;
 
     @Nullable
     @Override
@@ -41,6 +50,9 @@ public class TaskListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        taskDatabase = ((TaskApplication) getActivity().getApplicationContext()).getTaskDatabase();
+        settingUpAdapter();
         dialogProgress();
         taskCompleted();
     }
@@ -76,6 +88,23 @@ public class TaskListFragment extends Fragment {
                 return false;
             }
         };
+
+
+    }
+
+    private void settingUpAdapter() {
+
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        adapter = new TaskAdapter(tasks, getContext());
+
+        adapter = new TaskAdapter(taskDatabase.taskDao().getTasks(), getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
 
 
     }
