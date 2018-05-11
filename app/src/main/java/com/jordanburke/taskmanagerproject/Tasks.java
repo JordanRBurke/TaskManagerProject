@@ -12,7 +12,7 @@ public class Tasks {
     private String taskName;
     private String taskDueDate;
     private String taskDetails;
-    private int listPosition = 0;
+    private int listPosition;
 
     public Tasks(String taskName, String taskDueDate, String taskDetails) {
         this.taskName = taskName;

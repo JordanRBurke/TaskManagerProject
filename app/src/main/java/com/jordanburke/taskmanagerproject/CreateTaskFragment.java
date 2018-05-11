@@ -46,7 +46,9 @@ public class CreateTaskFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         taskDatabase = ((TaskApplication) getActivity().getApplicationContext()).getTaskDatabase();
+
     }
 
     public static CreateTaskFragment newInstance() {
@@ -61,7 +63,7 @@ public class CreateTaskFragment extends Fragment {
     @OnClick(R.id.create_task_final_button)
     protected void taskFinalButtonClicked() {
 
-        tasks.setListPosition(+1);
+
 
 //        Bundle bundle = new Bundle();
 

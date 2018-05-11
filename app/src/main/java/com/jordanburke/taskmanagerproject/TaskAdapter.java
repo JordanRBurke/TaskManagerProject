@@ -65,9 +65,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         public void bindTaskList(Tasks position) {
 
-            taskName.setText(tasksList.get(tasks.getListPosition()).getTaskName());
-            dueDateView.setText(tasksList.get(tasks.getListPosition()).getTaskDueDate());
-            detailTaskView.setText(tasksList.get(tasks.getListPosition()).getTaskDetails());
+            taskName.setText(tasksList.get(getAdapterPosition()).getTaskName());
+            dueDateView.setText(tasksList.get(getAdapterPosition()).getTaskDueDate());
+            detailTaskView.setText(tasksList.get(getAdapterPosition()).getTaskDetails());
 
 
         }
