@@ -12,6 +12,7 @@ public class Tasks {
     private String taskName;
     private String taskDueDate;
     private String taskDetails;
+    private int listPosition = 0;
 
     public Tasks(String taskName, String taskDueDate, String taskDetails) {
         this.taskName = taskName;
@@ -49,5 +50,13 @@ public class Tasks {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getListPosition() {
+        return listPosition;
+    }
+
+    public void setListPosition(int listPosition) {
+        this.listPosition = listPosition;
     }
 }

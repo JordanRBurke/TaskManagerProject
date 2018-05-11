@@ -31,6 +31,7 @@ public class CreateTaskFragment extends Fragment {
     public static final String TASK_DESCRIPTION = "task_description";
     private TaskListFragment taskListFragment;
     private TaskDatabase taskDatabase;
+    private Tasks tasks;
 
     @Nullable
     @Override
@@ -59,6 +60,8 @@ public class CreateTaskFragment extends Fragment {
 
     @OnClick(R.id.create_task_final_button)
     protected void taskFinalButtonClicked() {
+
+        tasks.setListPosition(+1);
 
 //        Bundle bundle = new Bundle();
 

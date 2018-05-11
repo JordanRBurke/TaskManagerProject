@@ -26,6 +26,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     protected TextInputEditText dueDateEdit;
     @BindView(R.id.details_edit_text)
     protected TextInputEditText detailsEdit;
+    private Tasks tasks;
 
 
 
@@ -62,7 +63,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
 
-        public void bindTaskList(Tasks tasks) {
+        public void bindTaskList(Tasks position) {
+
+            taskName.setText(tasksList.get(tasks.getListPosition()).getTaskName());
+            dueDateView.setText(tasksList.get(tasks.getListPosition()).getTaskDueDate());
+            detailTaskView.setText(tasksList.get(tasks.getListPosition()).getTaskDetails());
 
 
         }
