@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     protected TextInputEditText detailsEdit;
     private Tasks tasks;
     private TaskClickListener taskClickListener;
-
-
+    private boolean singleClickSelected;
+    private CreateTaskFragment createTaskFragment;
 
 
     public TaskAdapter(List<Tasks> tasksList, Context mainActivity) {
@@ -81,30 +82,69 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         }
 
-
-
-
-
+        // When normal clicking on an object this happens:
         @Override
         public void onClick(View v) {
-           Context context = v.getContext();
-            Toast.makeText(context, "Click Successful", Toast.LENGTH_SHORT).show();
+            Context context = v.getContext();
+            singleClickSelected = true;
+
 
 
         }
 
-
+        //When long clicking on an object this happens:
         @Override
         public boolean onLongClick(View v) {
             Context context = v.getContext();
             Toast.makeText(context, "LongClick Successful", Toast.LENGTH_SHORT).show();
+            builder("Would you like to remove this task?");
             return false;
+
+        }
+
+        // Alerts user based on message passed in
+        private AlertDialog builder(String message) {
+            Context context = itemView.getContext();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(message)
+                    .setTitle("Task")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Context context1 = itemView.getContext();
+                            if (singleClickSelected) {
+
+
+
+                            }
+                            Toast.makeText(context1, "dialogComplete", Toast.LENGTH_SHORT).show();
+//                            tasksList.remove(getLayoutPosition());
+                            if (tasksList == tasksList.get(0)) {
+                                Toast.makeText(context1, "Error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                tasksList.remove(getAdapterPosition());
+                                notifyItemRemoved(getAdapterPosition());
+                            }
+
+
+                        }
+
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+
+//            return builder.create();
+            return builder.show();
         }
     }
 
-    private void alertDialogMessage() {
-
-    }
+}
 
 
 
@@ -113,8 +153,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
 
-
-    }
 
 
 

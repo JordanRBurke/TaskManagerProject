@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public class RemoveTaskFragment extends Fragment {
+public class EditTaskFragment extends Fragment {
 
     @Nullable
     @Override
@@ -20,11 +20,11 @@ public class RemoveTaskFragment extends Fragment {
         return view;
     }
 
-    public static RemoveTaskFragment newInstance() {
+    public static EditTaskFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        RemoveTaskFragment fragment = new RemoveTaskFragment();
+        EditTaskFragment fragment = new EditTaskFragment();
         fragment.setArguments(args);
         return fragment;
     }

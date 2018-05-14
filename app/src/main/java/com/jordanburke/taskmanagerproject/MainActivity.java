@@ -1,20 +1,12 @@
 package com.jordanburke.taskmanagerproject;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Button;
 
 import butterknife.BindView;
@@ -30,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     //    @BindView(R.id.list_tasks_button)
 //    protected Button listTasksButton;
     private CreateTaskFragment createTaskFragment;
-    private RemoveTaskFragment removeTaskFragment;
+    private EditTaskFragment editTaskFragment;
     private TaskListFragment taskListFragment;
     private TaskAdapter adapter;
     private TaskDatabase taskDatabase;
