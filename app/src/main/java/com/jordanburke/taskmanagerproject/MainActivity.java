@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //    @BindView(R.id.list_tasks_button)
 //    protected Button listTasksButton;
     private CreateTaskFragment createTaskFragment;
+    private RemoveTaskFragment removeTaskFragment;
     private TaskListFragment taskListFragment;
     private TaskAdapter adapter;
     private TaskDatabase taskDatabase;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     protected void removeTaskClicked() {
 
 
+
+
     }
 
 //    @OnClick(R.id.list_tasks_button)
@@ -99,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        getSupportFragmentManager().beginTransaction().remove(taskListFragment);
+//        getSupportFragmentManager().beginTransaction().remove(taskListFragment);
+        ViewGroup viewGroup = findViewById(R.id.main_frame_layout);
+        viewGroup.removeAllViews();
 
 
 

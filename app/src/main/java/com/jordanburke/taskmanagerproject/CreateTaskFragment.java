@@ -101,4 +101,6 @@ public class CreateTaskFragment extends Fragment {
 
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
+
+
 }

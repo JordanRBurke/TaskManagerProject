@@ -1,6 +1,9 @@
 package com.jordanburke.taskmanagerproject;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @BindView(R.id.details_edit_text)
     protected TextInputEditText detailsEdit;
     private Tasks tasks;
+    private TaskClickListener taskClickListener;
 
 
 
@@ -53,13 +58,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return tasksList.size();
     }
 
-    public class TaskViewHolder extends RecyclerView.ViewHolder {
+    public class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TaskViewHolder(View itemView) {
             super(itemView);
 
             taskName = itemView.findViewById(R.id.item_task_name_view);
             dueDateView = itemView.findViewById(R.id.date_text_view);
             detailTaskView = itemView.findViewById(R.id.details_item_view);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+
+
         }
 
 
@@ -71,7 +80,33 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
         }
+
+
+
+
+
+        @Override
+        public void onClick(View v) {
+           Context context = v.getContext();
+            Toast.makeText(context, "Click Successful", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+
+        @Override
+        public boolean onLongClick(View v) {
+            Context context = v.getContext();
+            Toast.makeText(context, "LongClick Successful", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
+
+    private void alertDialogMessage() {
+
+    }
+
+
 
 
 
