@@ -2,8 +2,98 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_task_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditTaskActivity">
+    tools:context="EditTaskFragment">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        app:layout_constraintTop_toTopOf="@id/edit_task_constraint_layout"
+        android:layout_marginTop="30dp"
+        android:text="Editing"
+        android:textColor="@color/customBlack"
+        android:elevation="2dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:fontFamily="monospace"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        app:layout_constraintTop_toTopOf="@id/edit_task_constraint_layout"
+        android:layout_marginTop="100dp"
+        android:elevation="2dp"
+        android:textColor="@color/customBlack">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="New Task Name"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        app:layout_constraintTop_toTopOf="@id/edit_task_constraint_layout"
+        android:layout_marginTop="200dp"
+        android:elevation="2dp"
+        android:textColor="@color/customBlack">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="New Due Date"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+
+            />
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        app:layout_constraintTop_toTopOf="@id/edit_task_constraint_layout"
+        android:layout_marginTop="300dp"
+        android:elevation="2dp"
+        android:textColor="@color/customBlack">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="New Details"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+
+            />
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/myWhite"
+        >
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

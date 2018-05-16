@@ -2,6 +2,7 @@ package com.jordanburke.taskmanagerproject;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -94,6 +95,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             Context context = v.getContext();
             singleClickSelected = true;
             builder("Would you like to edit this task?");
+//            MainActivity mainActivity = (MainActivity) v.getContext();
+//            mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment);
+            Intent intent = new Intent(context, MainActivity.class);
+
 
 
 
@@ -122,8 +127,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                             Context context1 = itemView.getContext();
                             if (singleClickSelected) {
                                 Toast.makeText(context1, "If activated", Toast.LENGTH_SHORT).show();
-//                                MainActivity mainActivity = (MainActivity)context1;
-//                                mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).commit();
+                                MainActivity mainActivity = (MainActivity) itemView.getContext();
+//                                EditTaskFragment editTaskFragment1 = new EditTaskFragment();
+                                editTaskFragment = EditTaskFragment.newInstance();
+                                mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).addToBackStack(null).commit();
                                 singleClickSelected = false;
 
 
@@ -155,6 +162,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             return builder.show();
         }
     }
+
+    private void setTransition(Fragment fragment) {
+
+
+    }
+
 
 }
 
