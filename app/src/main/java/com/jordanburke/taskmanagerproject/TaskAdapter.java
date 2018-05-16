@@ -97,7 +97,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             builder("Would you like to edit this task?");
 //            MainActivity mainActivity = (MainActivity) v.getContext();
 //            mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment);
-            Intent intent = new Intent(context, MainActivity.class);
+//            Intent intent = new Intent(context, MainActivity.class);
 
 
 
@@ -129,6 +129,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                                 Toast.makeText(context1, "If activated", Toast.LENGTH_SHORT).show();
                                 MainActivity mainActivity = (MainActivity) itemView.getContext();
 //                                EditTaskFragment editTaskFragment1 = new EditTaskFragment();
+
                                 editTaskFragment = EditTaskFragment.newInstance();
                                 mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).addToBackStack(null).commit();
                                 singleClickSelected = false;

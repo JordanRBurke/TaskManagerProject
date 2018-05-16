@@ -32,6 +32,7 @@
         android:textColor="@color/customBlack">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/task_name_new_edit"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="New Task Name"
@@ -53,6 +54,7 @@
         android:textColor="@color/customBlack">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/due_date_new_edit"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="New Due Date"
@@ -76,6 +78,7 @@
         android:textColor="@color/customBlack">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/details_new_edit"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="New Details"
@@ -87,6 +90,39 @@
 
 
     </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/finish_edit_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/edit_task_constraint_layout"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        android:layout_marginBottom="70dp"
+        android:text="Finish"
+        android:fontFamily="monospace"/>
+
+    <Button
+        android:id="@+id/edit_complete_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/finish_edit_button"
+        app:layout_constraintRight_toRightOf="@id/edit_task_constraint_layout"
+        android:text="complete"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="monospace"
+        android:background="@color/customWhite"/>
+
+    <Button
+        android:id="@+id/edit_incomplete_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/finish_edit_button"
+        app:layout_constraintLeft_toLeftOf="@id/edit_task_constraint_layout"
+        android:layout_marginBottom="20dp"
+        android:text="Incomplete"
+        android:fontFamily="monospace"
+        android:background="@color/customWhite"/>
 
     <FrameLayout
         android:layout_width="match_parent"
