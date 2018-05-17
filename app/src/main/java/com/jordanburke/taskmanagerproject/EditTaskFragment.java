@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
+import java.util.TooManyListenersException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +35,10 @@ public class EditTaskFragment extends Fragment {
     private List<Tasks> tasksList;
     private boolean editCompleteClicked;
     private boolean editIncompleteClicked;
+    public final static String ADAPTER_POSITION = "adapter_position";
+    public final static String TASK_LIST = "task_list";
+    Bundle bundle = new Bundle();
+    private EditTaskFragment editTaskFragment;
 
     @Nullable
     @Override
@@ -60,9 +66,17 @@ public class EditTaskFragment extends Fragment {
 
     @OnClick(R.id.finish_edit_button)
     protected void finishEditButtonClicked() {
-        tasksList.get(1).setTaskName(nameNewEdit.getText().toString());
-        tasksList.get(1).setTaskDueDate(dueDateNewEdit.getText().toString());
-        tasksList.get(1).setTaskDetails(detailsNewEdit.getText().toString());
+        int adapterPosition = bundle.getInt(ADAPTER_POSITION);
+        List<Tasks> adapterTaskList = bundle.getParcelableArrayList(TASK_LIST);
+
+        if (tasksList == null) {
+            Toast.makeText(getContext(), "Error, TaskList is null", Toast.LENGTH_SHORT).show();
+        } else {
+
+            adapterTaskList.get(adapterPosition).setTaskName(nameNewEdit.getText().toString());
+            adapterTaskList.get(adapterPosition).setTaskDueDate(dueDateNewEdit.getText().toString());
+            adapterTaskList.get(adapterPosition).setTaskDetails(detailsNewEdit.getText().toString());
+        }
 
 
 
@@ -71,24 +85,35 @@ public class EditTaskFragment extends Fragment {
     @OnClick(R.id.edit_complete_button)
     protected void editCompleteButtonClicked() {
         editCompleteClicked = true;
+        message("Task Completed!");
+
         if (editIncompleteClicked) {
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.customWhite));
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customGreen));
+
         } else {
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customGreen));
-        }
 
+
+        }
     }
 
     @OnClick(R.id.edit_incomplete_button)
     protected void editIncompleteButtonClicked() {
         editIncompleteClicked = true;
+        message("Task Marked Incomplete");
         if (editCompleteClicked) {
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customWhite));
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.myRed));
         } else {
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.myRed));
+
         }
+
+    }
+
+    private void message(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
 
     }
 }

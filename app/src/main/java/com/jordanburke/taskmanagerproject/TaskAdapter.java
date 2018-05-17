@@ -6,6 +6,8 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -17,7 +19,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import butterknife.BindView;
 
@@ -41,6 +47,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private EditTaskFragment editTaskFragment;
     private FragmentManager fragmentManager;
     private TaskDao taskDao;
+    public final static String ADAPTER_POSITION = "adapter_position";
+    public final static String TASK_LIST = "task_list";
 
 
     public TaskAdapter(List<Tasks> tasksList, Context mainContext) {
@@ -82,9 +90,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         public void bindTaskList(Tasks position) {
 
+
             taskName.setText(tasksList.get(getAdapterPosition()).getTaskName());
             dueDateView.setText(tasksList.get(getAdapterPosition()).getTaskDueDate());
             detailTaskView.setText(tasksList.get(getAdapterPosition()).getTaskDetails());
+
 
 
         }
@@ -129,8 +139,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                                 Toast.makeText(context1, "If activated", Toast.LENGTH_SHORT).show();
                                 MainActivity mainActivity = (MainActivity) itemView.getContext();
 //                                EditTaskFragment editTaskFragment1 = new EditTaskFragment();
-
+                                Bundle bundle = new Bundle();
+                                int adapterPosition = getAdapterPosition();
+                                bundle.putInt(ADAPTER_POSITION, adapterPosition);
+                                bundle.putParcelableArrayList(TASK_LIST, (ArrayList<? extends Parcelable>) tasksList);
                                 editTaskFragment = EditTaskFragment.newInstance();
+                                editTaskFragment.setArguments(bundle);
                                 mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).addToBackStack(null).commit();
                                 singleClickSelected = false;
 

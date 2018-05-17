@@ -2,9 +2,11 @@ package com.jordanburke.taskmanagerproject;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 @Entity
-public class Tasks {
+public class Tasks implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -58,5 +60,15 @@ public class Tasks {
 
     public void setListPosition(int listPosition) {
         this.listPosition = listPosition;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
