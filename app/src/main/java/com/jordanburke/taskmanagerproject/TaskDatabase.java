@@ -3,6 +3,7 @@ package com.jordanburke.taskmanagerproject;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
+import android.os.AsyncTask;
 
 @Database(version = 1, entities = Tasks.class)
 @TypeConverters(TaskConverter.class)
@@ -11,4 +12,5 @@ import android.arch.persistence.room.TypeConverters;
 abstract class TaskDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
+
 }

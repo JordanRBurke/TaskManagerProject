@@ -1,5 +1,6 @@
 package com.jordanburke.taskmanagerproject;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -91,8 +93,10 @@ public class EditTaskFragment extends Fragment {
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.customWhite));
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customGreen));
 
+
         } else {
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customGreen));
+
 
 
         }
@@ -105,8 +109,10 @@ public class EditTaskFragment extends Fragment {
         if (editCompleteClicked) {
             editCompleteButton.setBackgroundColor(getResources().getColor(R.color.customWhite));
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.myRed));
+
         } else {
             editIncompleteButton.setBackgroundColor(getResources().getColor(R.color.myRed));
+
 
         }
 

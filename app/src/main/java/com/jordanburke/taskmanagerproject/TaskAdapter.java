@@ -1,11 +1,15 @@
 package com.jordanburke.taskmanagerproject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +39,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private TextView taskName;
     private TextView dueDateView;
     private TextView detailTaskView;
+    private TextView completedStatus;
     @BindView(R.id.task_name_edit)
     protected TextInputEditText taskNameEdit;
     @BindView(R.id.due_date_edit)
@@ -47,6 +53,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private EditTaskFragment editTaskFragment;
     private FragmentManager fragmentManager;
     private TaskDao taskDao;
+    private TaskDatabase taskDatabase;
     public final static String ADAPTER_POSITION = "adapter_position";
     public final static String TASK_LIST = "task_list";
 
@@ -81,6 +88,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             taskName = itemView.findViewById(R.id.item_task_name_view);
             dueDateView = itemView.findViewById(R.id.date_text_view);
             detailTaskView = itemView.findViewById(R.id.details_item_view);
+            completedStatus = itemView.findViewById(R.id.completion_button_view);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
 
@@ -88,12 +96,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
 
+        @SuppressLint("ResourceAsColor")
         public void bindTaskList(Tasks position) {
 
 
             taskName.setText(tasksList.get(getAdapterPosition()).getTaskName());
             dueDateView.setText(tasksList.get(getAdapterPosition()).getTaskDueDate());
             detailTaskView.setText(tasksList.get(getAdapterPosition()).getTaskDetails());
+            completedStatus.setBackgroundColor(R.color.myRed);
 
 
 
@@ -129,6 +139,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         private AlertDialog builder(String message) {
             final Context context = itemView.getContext();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            taskDatabase = Room.databaseBuilder(context, TaskDatabase.class, "task").build();
             builder.setMessage(message)
                     .setTitle("Task")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -156,8 +167,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                                     Toast.makeText(context1, "Error", Toast.LENGTH_SHORT).show();
                                 } else {
 //                                    taskDao.deleteTask(tasks);
-                                    tasksList.remove(getAdapterPosition());
-                                    notifyItemRemoved(getAdapterPosition());
+
+
+                                        tasksList.remove(getAdapterPosition());
+//                                    taskDao.deleteTask(tasksList.get(tasks.getListPosition()));
+                                        taskDatabase.taskDao().deleteTask(tasks);
+
+                                        notifyItemRemoved(getAdapterPosition());
+
+
                                 }
 
                             }
