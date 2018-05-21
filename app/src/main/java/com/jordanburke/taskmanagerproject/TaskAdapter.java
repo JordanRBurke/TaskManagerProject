@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.menu.MenuView;
@@ -52,15 +53,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private CreateTaskFragment createTaskFragment;
     private EditTaskFragment editTaskFragment;
     private FragmentManager fragmentManager;
+    public TaskCallBack taskCallBack;
     private TaskDao taskDao;
     private TaskDatabase taskDatabase;
+
     public final static String ADAPTER_POSITION = "adapter_position";
     public final static String TASK_LIST = "task_list";
 
 
-    public TaskAdapter(List<Tasks> tasksList, Context mainContext) {
+    public TaskAdapter(List<Tasks> tasksList, Context mainContext, TaskCallBack taskCallBack ) {
         this.tasksList = tasksList;
         this.fragmentManager = fragmentManager;
+        this.taskCallBack = taskCallBack;
     }
 
     @NonNull
@@ -73,7 +77,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
+
         holder.bindTaskList(tasksList.get(position));
+//        holder..setOnClickListener(holder.onRowClicked(tasksList.get(position)));
     }
 
     @Override
@@ -84,6 +90,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TaskViewHolder(View itemView) {
             super(itemView);
+
 
             taskName = itemView.findViewById(R.id.item_task_name_view);
             dueDateView = itemView.findViewById(R.id.date_text_view);
@@ -171,7 +178,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
                                         tasksList.remove(getAdapterPosition());
 //                                    taskDao.deleteTask(tasksList.get(tasks.getListPosition()));
-                                        taskDatabase.taskDao().deleteTask(tasks);
+                                        taskDatabase.taskDao().deleteTask(tasksList.get(getAdapterPosition()));
+
 
                                         notifyItemRemoved(getAdapterPosition());
 
@@ -194,6 +202,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 //            return builder.create();
             return builder.show();
         }
+
+        public View.OnClickListener onRowClicked(final Tasks tasks) {
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    taskCallBack.rowClicked(tasks);
+                }
+            };
+        }
+    }
+
+
+
+
+    public interface TaskCallBack {
+        void rowClicked(Tasks tasks);
+
+
     }
 
     private void setTransition(Fragment fragment) {
