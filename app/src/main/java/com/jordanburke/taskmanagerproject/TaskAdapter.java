@@ -53,7 +53,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private CreateTaskFragment createTaskFragment;
     private EditTaskFragment editTaskFragment;
     private FragmentManager fragmentManager;
-    public TaskCallBack taskCallBack;
+    private ConstraintLayout taskItemBackground;
+    public  TaskCallBack taskCallBack;
     private TaskDao taskDao;
     private TaskDatabase taskDatabase;
 
@@ -67,6 +68,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         this.taskCallBack = taskCallBack;
     }
 
+
+
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -79,7 +82,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
 
         holder.bindTaskList(tasksList.get(position));
-//        holder..setOnClickListener(holder.onRowClicked(tasksList.get(position)));
+        holder.taskItemBackground.setOnClickListener(holder.onRowClicked(tasksList.get(position)));
     }
 
     @Override
@@ -87,7 +90,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return tasksList.size();
     }
 
-    public class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    // REMINDER - ADD CLICK AND LONG CLICK BACK IN TASKVIEWHOLDER
+    public class TaskViewHolder extends RecyclerView.ViewHolder {
+
+        private ConstraintLayout taskItemBackground;
+
         public TaskViewHolder(View itemView) {
             super(itemView);
 
@@ -96,8 +103,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             dueDateView = itemView.findViewById(R.id.date_text_view);
             detailTaskView = itemView.findViewById(R.id.details_item_view);
             completedStatus = itemView.findViewById(R.id.completion_button_view);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
+            taskItemBackground = itemView.findViewById(R.id.task_item_constraint_layout);
+//            itemView.setOnClickListener(this);
+//            itemView.setOnLongClickListener(this);
 
 
         }
@@ -114,94 +122,96 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
 
+
+
         }
 
         // When normal clicking on an object this happens:
-        @Override
-        public void onClick(View v) {
-            Context context = v.getContext();
-            singleClickSelected = true;
-            builder("Would you like to edit this task?");
-//            MainActivity mainActivity = (MainActivity) v.getContext();
-//            mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment);
-//            Intent intent = new Intent(context, MainActivity.class);
-
-
-
-
-
-        }
+//        @Override
+//        public void onClick(View v) {
+//            Context context = v.getContext();
+//            singleClickSelected = true;
+//            builder("Would you like to edit this task?");
+////            MainActivity mainActivity = (MainActivity) v.getContext();
+////            mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment);
+////            Intent intent = new Intent(context, MainActivity.class);
+//
+//
+//
+//
+//
+//        }
 
         //When long clicking on an object this happens:
-        @Override
-        public boolean onLongClick(View v) {
-            Context context = v.getContext();
-            Toast.makeText(context, "LongClick Successful", Toast.LENGTH_SHORT).show();
-            builder("Would you like to remove this task?");
-            return false;
-
-        }
+//        @Override
+//        public boolean onLongClick(View v) {
+//            Context context = v.getContext();
+//            Toast.makeText(context, "LongClick Successful", Toast.LENGTH_SHORT).show();
+//            builder("Would you like to remove this task?");
+//            return false;
+//
+//        }
 
         // Alerts user based on message passed in
-        private AlertDialog builder(String message) {
-            final Context context = itemView.getContext();
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            taskDatabase = Room.databaseBuilder(context, TaskDatabase.class, "task").build();
-            builder.setMessage(message)
-                    .setTitle("Task")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Context context1 = itemView.getContext();
-                            if (singleClickSelected) {
-                                Toast.makeText(context1, "If activated", Toast.LENGTH_SHORT).show();
-                                MainActivity mainActivity = (MainActivity) itemView.getContext();
-//                                EditTaskFragment editTaskFragment1 = new EditTaskFragment();
-                                Bundle bundle = new Bundle();
-                                int adapterPosition = getAdapterPosition();
-                                bundle.putInt(ADAPTER_POSITION, adapterPosition);
-                                bundle.putParcelableArrayList(TASK_LIST, (ArrayList<? extends Parcelable>) tasksList);
-                                editTaskFragment = EditTaskFragment.newInstance();
-                                editTaskFragment.setArguments(bundle);
-                                mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).addToBackStack(null).commit();
-                                singleClickSelected = false;
-
-
-                            } else {
-                                Toast.makeText(context1, "dialogComplete", Toast.LENGTH_SHORT).show();
-//                            tasksList.remove(getLayoutPosition());
-                                if (tasksList == tasksList.get(0)) {
-                                    Toast.makeText(context1, "Error", Toast.LENGTH_SHORT).show();
-                                } else {
-//                                    taskDao.deleteTask(tasks);
-
-
-                                        tasksList.remove(getAdapterPosition());
-//                                    taskDao.deleteTask(tasksList.get(tasks.getListPosition()));
-                                        taskDatabase.taskDao().deleteTask(tasksList.get(getAdapterPosition()));
-
-
-                                        notifyItemRemoved(getAdapterPosition());
-
-
-                                }
-
-                            }
-                        }
-
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-
-                        }
-                    });
-
-
-//            return builder.create();
-            return builder.show();
-        }
+//        private AlertDialog builder(String message) {
+//            final Context context = itemView.getContext();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//            taskDatabase = Room.databaseBuilder(context, TaskDatabase.class, "task").build();
+//            builder.setMessage(message)
+//                    .setTitle("Task")
+//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Context context1 = itemView.getContext();
+//                            if (singleClickSelected) {
+//                                Toast.makeText(context1, "If activated", Toast.LENGTH_SHORT).show();
+//                                MainActivity mainActivity = (MainActivity) itemView.getContext();
+////                                EditTaskFragment editTaskFragment1 = new EditTaskFragment();
+//                                Bundle bundle = new Bundle();
+//                                int adapterPosition = getAdapterPosition();
+//                                bundle.putInt(ADAPTER_POSITION, adapterPosition);
+//                                bundle.putParcelableArrayList(TASK_LIST, (ArrayList<? extends Parcelable>) tasksList);
+//                                editTaskFragment = EditTaskFragment.newInstance();
+//                                editTaskFragment.setArguments(bundle);
+//                                mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, editTaskFragment).addToBackStack(null).commit();
+//                                singleClickSelected = false;
+//
+//
+//                            } else {
+//                                Toast.makeText(context1, "dialogComplete", Toast.LENGTH_SHORT).show();
+////                            tasksList.remove(getLayoutPosition());
+//                                if (tasksList == tasksList.get(0)) {
+//                                    Toast.makeText(context1, "Error", Toast.LENGTH_SHORT).show();
+//                                } else {
+////                                    taskDao.deleteTask(tasks);
+//
+//
+//                                        tasksList.remove(getAdapterPosition());
+////                                    taskDao.deleteTask(tasksList.get(tasks.getListPosition()));
+//                                        taskDatabase.taskDao().deleteTask(tasksList.get(getAdapterPosition()));
+//
+//
+//                                        notifyItemRemoved(getAdapterPosition());
+//
+//
+//                                }
+//
+//                            }
+//                        }
+//
+//                    })
+//                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//
+//
+//                        }
+//                    });
+//
+//
+////            return builder.create();
+//            return builder.show();
+//        }
 
         public View.OnClickListener onRowClicked(final Tasks tasks) {
             return new View.OnClickListener() {

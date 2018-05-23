@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.os.AsyncTask;
 
-@Database(version = 1, entities = Tasks.class)
+@Database(version = 1, entities = Tasks.class, exportSchema = false)
 @TypeConverters(TaskConverter.class)
 
 

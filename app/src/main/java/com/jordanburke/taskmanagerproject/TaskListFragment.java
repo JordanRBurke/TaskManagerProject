@@ -12,13 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TaskListFragment extends Fragment {
+public class TaskListFragment extends Fragment implements TaskAdapter.TaskCallBack{
 
     private boolean dialogRead = false;
 //    @BindView(R.id.task_item_constraint_layout)
@@ -101,7 +102,7 @@ public class TaskListFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 //        adapter = new TaskAdapter(tasks, getContext());
 
-        adapter = new TaskAdapter(taskDatabase.taskDao().getTasks(), getContext());
+        adapter = new TaskAdapter(taskDatabase.taskDao().getTasks(), getContext(), this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -110,7 +111,9 @@ public class TaskListFragment extends Fragment {
     }
 
 
+    @Override
+    public void rowClicked(Tasks tasks) {
+        Toast.makeText(getContext(), "Test", Toast.LENGTH_SHORT).show();
 
-
-
+    }
 }
